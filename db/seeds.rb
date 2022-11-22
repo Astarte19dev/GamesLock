@@ -5,3 +5,24 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# puts "#{games["items"][0]["name"]} - #{games["items"][0]["description"]} - #{games["items"][0]["images"]["square100"]["src"]} - #{games["items"][0]["images"]["mediacard"]["src@2x"]}"
+
+require "json"
+require "open-uri"
+
+Game.destroy_all
+
+url = "https://api.geekdo.com/api/hotness"
+games_serialized = URI.open(url).read
+games = JSON.parse(games_serialized)
+
+games["items"].each do |game|
+  game_selection = Game.new(
+    name: game["name"],
+    description: game["description"]
+  )
+  game_selection.user = User.first
+  game_selection.save!
+  # puts "#{game_selection.name} - #{game_selection.description}"
+end
