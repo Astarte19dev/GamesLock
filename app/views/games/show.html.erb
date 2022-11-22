@@ -2,28 +2,30 @@
   <div class="product_description">
     <div class="product_key_element">
       <%# <img src="" alt=""> %>
-      <h3>We will add an image here later on</h3>
-      <strong><h1>@game.name</h1></strong> <%= @game.price %>
+      <h3>We will add an image here later on with cloudinary</h3>
+      <strong><h3><%= @game.name %></h3></strong> <%= @game.price %>
     </div>
 
     <div class="product_details mb-5">
-      <h5>Description</h5>
-      <p><% @game.description%><p>
-      <p><%= @game.type%> <%= @game.level%></p>
-      <p><%= @game.player %></p>
-      <p><%= @game.age %></p>
-        <% end %>
+      <h5>Game description</h5>
+      <p><%= @game.description%><p>
+      <h5>Type and number of players</h5>
+      <p><%= @game.type%> <%= @game.player %></p>
+      <h5>Age and level</h5>
+      <p><%= @game.age %> <%= @game.level%></p>
       </div>
   </div>
 
-<div class="reservation_form">
-  <%= simple_form_for @user do |f| %>
-  <%= f.input :starting_date, placeholder: 'Date du début (JJMMYYYY)' %>
-  <%= f.input :ending_date, placeholder: 'Date de fin de la location (JJMMYYYY)'%>
-  <%= f.button :submit %>
+<div class="tot_form">
+  <%= simple_form_for [@game, @reservation] do |f| %>
+    <%= f.input :date_start, html5: true, label: 'Date du début' %>
+    <%= f.input :date_end, html5: true, label: 'Date de fin de la location'%>
+    <%= f.button :submit, class: 'btn btn-dark' %>
   <% end %>
 </div>
 </div>
-        <%# Attention, faire apparaitre le bouton DELETE que pour le user qui poste l'annonce %>
-        <%= link_to "Supprimer votre annonce", game_path(game), class: "btn btn-flat", data: {turbo_method: :delete, turbo_confirm: "Valider la suppression?"} %>
+  <%# Attention, faire apparaitre le bouton DELETE que pour le user qui poste l'annonce %>
+  <% if current_user == @game.user %>
+    <%= link_to "Supprimer votre annonce", game_path(@game), class: "btn btn-flat", data: {turbo_method: :delete, turbo_confirm: "Valider la suppression?"} %>
+  <% end %>
 </div>
