@@ -10,13 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_22_094043) do
+
+ActiveRecord::Schema[7.0].define(version: 2022_11_21_170218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "controllers_to_apps", force: :cascade do |t|
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "type"
+    t.string "level"
+    t.integer "player"
+    t.integer "age"
+    t.float "price"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_games_on_user_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.date "date_start"
+    t.date "date_end"
+    t.float "total_price"
+    t.bigint "user_id", null: false
+    t.bigint "game_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_reservations_on_game_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -27,8 +49,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_094043) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "firstname"
+    t.string "lastname"
+    t.string "address"
+    t.string "city"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "games", "users"
+  add_foreign_key "reservations", "games"
+  add_foreign_key "reservations", "users"
 end
