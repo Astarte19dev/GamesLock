@@ -5,6 +5,5 @@ class UsersController < ApplicationController
   end
 
   def new
-    raise
   end
 end
