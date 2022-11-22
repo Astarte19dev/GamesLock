@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="product_description">
+    <div class="product_key_element">
+      <%# <img src="" alt=""> %>
+      <h3>We will add an image here later on</h3>
+      <strong><h1>@game.name</h1></strong> <%= @game.price %>
+    </div>
+
+    <div class="product_details mb-5">
+      <h5>Description</h5>
+      <p><% @game.description%><p>
+      <p><%= @game.type%> <%= @game.level%></p>
+      <p><%= @game.player %></p>
+      <p><%= @game.age %></p>
+        <% end %>
+      </div>
+  </div>
+
+<div class="reservation_form">
+  <%= simple_form_for @user do |f| %>
+  <%= f.input :starting_date, placeholder: 'Date du début (JJMMYYYY)' %>
+  <%= f.input :ending_date, placeholder: 'Date de fin de la location (JJMMYYYY)'%>
+  <%= f.button :submit %>
+  <% end %>
+</div>
+</div>
+        <%# Attention, faire apparaitre le bouton DELETE que pour le user qui poste l'annonce %>
+        <%= link_to "Supprimer votre annonce", game_path(game), class: "btn btn-flat", data: {turbo_method: :delete, turbo_confirm: "Valider la suppression?"} %>
+</div>
