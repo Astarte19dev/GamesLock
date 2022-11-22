@@ -1,0 +1,52 @@
+.form-title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.form-box {
+  width: 400px;
+}
+
+.btn-green {
+  color: #000000;
+  background-color: #7BF1A8;
+  border: 1px solid #7BF1A8;
+  padding: 8px 24px;
+  border-radius: 3px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.btn-green:hover {
+  opacity: 0.8;
+}
+
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #670BFF;
+  transition: background 0.3s ease;
+}
+
+.btn-flat:hover {
+  background: #4D04C4;
+  color: white;
+}
+
+.btn-gradient {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: linear-gradient(#167FFB, #0F60C4);
+  transition: background 0.3s ease;
+  border: 1px solid #0F60C4;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(#147EFF, #0F67DA);
+  color: white;
+}
