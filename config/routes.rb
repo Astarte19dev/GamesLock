@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :reservations, only: :destroy
 
   # get "pages", to: "pages#search"
+  get "profile", to: "dashboards#profile"
 end
