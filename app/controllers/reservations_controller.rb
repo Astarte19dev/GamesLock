@@ -1,4 +1,7 @@
 class ReservationsController < ApplicationController
+  def index
+  end
+
   def show
   end
 
@@ -6,5 +9,8 @@ class ReservationsController < ApplicationController
   end
 
   def create
+  end
+
+  def destroy
   end
 end
