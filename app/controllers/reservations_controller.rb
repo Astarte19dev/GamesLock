@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   def index
+    @reservation = Reservation.all
   end
 
   def show
@@ -24,5 +25,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @reservation.destroy
+    redirect_to profile_path(), status: :see_other
   end
 end
