@@ -9,7 +9,21 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <%= link_to '+', game_path %>
+  <%= link_to 'Create a game',  new_game_path, class:"btn btn-info" %>
+
+<%# <%= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+  <%# <%= f.input :name, input_html: {value: ""} %>
+  <%# <%= f.submit "Search", class: "btn btn-info" %>
+<%# <% end %>
+<%= form_with url: root_path, method: :get, class: "d-flex" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a game"
+  %>
+  <%= submit_tag "Search", class: "btn btn-info" %>
+<% end %>
+
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
