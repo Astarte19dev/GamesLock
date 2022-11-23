@@ -23,6 +23,8 @@ games["items"].each do |game|
     description: game["description"]
   )
   game_selection.user = User.first
+  file = URI.open(game["images"]["mediacard"]["src@2x"])
+  game_selection.photo.attach(io: file, filename: 'image', content_type: 'image/png')
   game_selection.save!
   # puts "#{game_selection.name} - #{game_selection.description}"
 end
