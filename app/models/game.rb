@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
-  TYPE = %w[strategy family aventure]
+  GAME_TYPE = %w[Agility Aventure Family Humor Reflexion Strategy]
+  LEVEL = %w[Easy Medium Hard]
 
   has_one_attached :photo
   belongs_to :user
