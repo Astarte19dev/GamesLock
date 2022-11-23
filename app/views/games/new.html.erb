@@ -3,8 +3,7 @@
   <h1 class="form-title d-flex justify-content-center">What games would you like to rent?</h1>
 
   <div class="d-flex justify-content-center">
-  <%= cl_image_tag("qwohup0oiocwtd1nxaqb.jpg",
-      width: 900, height: 300, crop: :fill) %>
+    <%= cl_image_tag("qwohup0oiocwtd1nxaqb.jpg", width: 900, height: 300, crop: :fill) %>
   </div>
 
   <%= simple_form_for(@game) do |f| %>
@@ -13,7 +12,7 @@
         <%= f.input :name %>
       </div>
       <div class="col-4 col-sm-3 my-3">
-        <%= f.input :type, collection: Game::TYPE %>
+        <%= f.input :game_type, collection: Game::GAME_TYPE %>
       </div>
     </div>
 
@@ -25,7 +24,7 @@
 
       <div class="row justify-content-center">
         <div class="col-4 col-sm-3 my-3">
-          <%= f.input :player %>
+          <%= f.input :player, label:"min Player" %>
         </div>
         <div class="col-4 col-sm-3 my-3">
           <%= f.input :age %>
@@ -34,7 +33,7 @@
 
       <div class="row justify-content-center">
         <div class="col-4 col-sm-3 my-3">
-          <%= f.input :level %>
+          <%= f.input :level, collection: Game::LEVEL %>
         </div>
         <div class="col-4 col-sm-3 my-3">
           <%= f.input :price %>
