@@ -16,11 +16,11 @@
       </div>
   </div>
 
-<div class="tot_form">
+<div class="reservation_form">
   <%= simple_form_for [@game, @reservation] do |f| %>
     <%= f.input :date_start, html5: true, label: 'Date du début' %>
     <%= f.input :date_end, html5: true, label: 'Date de fin de la location'%>
-    <%= f.button :submit, class: 'btn btn-dark' %>
+    <%= f.button :submit, 'Rent 🎲', class: 'btn btn-dark' %>
   <% end %>
 </div>
 </div>
