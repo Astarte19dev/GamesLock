@@ -1,31 +1,43 @@
-<div class="container">
-  <div class="product_description">
-    <div class="product_key_element">
-      <%# <img src="" alt=""> %>
-      <%= cl_image_tag @game.photo.key, height: 300, width: 400, crop: :fill %>
-      <strong><h3><%= @game.name %></h3></strong> <%= @game.price %>
-    </div>
 
-    <div class="product_details mb-5">
-      <h5>Game description</h5>
-      <p><%= @game.description%><p>
-      <h5>Type and number of players</h5>
-      <p><%= @game.game_type%> <%= @game.player %></p>
-      <h5>Age and level</h5>
-      <p><%= @game.age %> <%= @game.level%></p>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+
+      <div class="container">
+        <div class="product_description">
+            <%= cl_image_tag @game.photo.key, height: 300, width: 400, crop: :fill %>
+          <div class="product_key_element mt-2">
+            <strong><h3><%= @game.name %></h3></strong> <p>Location <%= @game.price %> € par jour</p>
+          </div>
+
+          <div class="product_details mb-5">
+            <h5><strong>Game description</strong></h5>
+            <p><%= @game.description%><p>
+            <h5><strong>Type</strong></h5>
+            <p><%= @game.game_type%></p>
+            <h5><strong>Number of players</strong></h5>
+            <p><%= @game.player %></p>
+            <h5><strong>Age</strong></h5>
+            <p><%= @game.age %></p>
+            <h5><strong>Level</strong></h5>
+            <p><%= @game.level%></p>
+            </div>
+        </div>
+
+      <div class="reservation_form">
+        <%= simple_form_for [@game, @reservation] do |f| %>
+          <%= f.input :date_start, html5: true, label: 'Date du début de la location' %>
+          <%= f.input :date_end, html5: true, label: 'Date de fin'%>
+          <%= f.button :submit, 'Rent 🎲', class: 'btn btn-dark' %>
+        <% end %>
       </div>
+      </div>
+        <%# Le bouton DELETE n'apparaît que pour le user qui poste l'annonce %>
+        <% if current_user == @game.user %>
+          <%= link_to "Delete your add", game_path(@game), class: "btn btn-flat", data: {turbo_method: :delete, turbo_confirm: "Valider la suppression?"} %>
+        <% end %>
+      <%= link_to "Return to home", root_path, class: "btn btn-info" %>
+      </div>
+    </div>
   </div>
-
-<div class="reservation_form">
-  <%= simple_form_for [@game, @reservation] do |f| %>
-    <%= f.input :date_start, html5: true, label: 'Date du début' %>
-    <%= f.input :date_end, html5: true, label: 'Date de fin de la location'%>
-    <%= f.button :submit, 'Rent 🎲', class: 'btn btn-dark' %>
-  <% end %>
-</div>
-</div>
-  <%# Attention, faire apparaitre le bouton DELETE que pour le user qui poste l'annonce %>
-  <% if current_user == @game.user %>
-    <%= link_to "Supprimer votre annonce", game_path(@game), class: "btn btn-flat", data: {turbo_method: :delete, turbo_confirm: "Valider la suppression?"} %>
-  <% end %>
 </div>
