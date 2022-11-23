@@ -28,7 +28,3 @@ games["items"].each do |game|
   game_selection.save!
   # puts "#{game_selection.name} - #{game_selection.description}"
 end
-
-resa1 = Reservation.create(date_start = 13052020, date_end = 15052020)
-resa2 = Reservation.create(date_start = 13122022, date_end = 15122022)
-resa3 = Reservation.create(date_start = 20122022, date_end = 22122022)
