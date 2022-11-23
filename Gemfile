@@ -60,6 +60,9 @@ group :development, :test do
 
 end
 
+#Je ne sais pas si je le met dans development ou dans test ou dans les deux!
+gem "dotenv-rails", groups: [:development, :test]
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
