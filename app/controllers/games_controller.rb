@@ -35,10 +35,14 @@ class GamesController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
+  def search
+    @term = params[:name]
+    @results = Game.where("lower(title) LIKE ?", "%#{@term.name}%")
+  end
+
   private
 
   def game_params
     params.require(:game).permit(:name, :description, :type, :level, :player, :age, :price, :photo)
   end
-
 end
