@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   def index
+    @reservation = Reservation.all
   end
 
   def show
@@ -17,12 +18,20 @@ class ReservationsController < ApplicationController
     @reservation.user = current_user
     @reservation.game_id = @game.id
     if @reservation.save
-      redirect_to game_path(@game)
+      redirect_to profile_path(@game)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @reservation.destroy
+    redirect_to profile_path, status: :see_other
+  end
+
+  private
+
+  def reservation_params
+    params.require('reservation').permit(:date_start, :date_end)
   end
 end

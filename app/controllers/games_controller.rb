@@ -24,8 +24,8 @@ class GamesController < ApplicationController
   end
 
   def update
-    @game = game.find(params[:id])
-    @game.update(params[:game])
+    @game = Game.find(params[:id])
+    @game.update!(game_params)
     redirect_to game_path(@game)
   end
 
@@ -35,10 +35,17 @@ class GamesController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
+  def search
+    if params[:query].present?
+      @games = Game.where(name: params[:query])
+    else
+      @games = Game.all
+    end
+  end
+
   private
 
   def game_params
     params.require(:game).permit(:name, :description, :type, :level, :player, :age, :price, :photo)
   end
-
 end
