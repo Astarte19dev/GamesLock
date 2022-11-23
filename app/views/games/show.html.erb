@@ -2,7 +2,7 @@
   <div class="product_description">
     <div class="product_key_element">
       <%# <img src="" alt=""> %>
-      <h3>We will add an image here later on with cloudinary</h3>
+      <%= cl_image_tag @game.photo.key, height: 300, width: 400, crop: :fill %>
       <strong><h3><%= @game.name %></h3></strong> <%= @game.price %>
     </div>
 
