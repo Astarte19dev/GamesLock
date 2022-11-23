@@ -37,8 +37,11 @@ class GamesController < ApplicationController
   end
 
   def search
-    @term = params[:name]
-    @results = Game.where("lower(title) LIKE ?", "%#{@term.name}%")
+    if params[:query].present?
+      @games = Game.where(name: params[:query])
+    else
+      @games = Game.all
+    end
   end
 
   private
