@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   def index
+    @games = Game.all
   end
 
   def show
@@ -8,9 +9,13 @@ class GamesController < ApplicationController
   end
 
   def new
+    @game = Game.new
   end
 
   def create
+    @game = Game.new(game_params)
+    @game.save
+    redirect_to game_path(game)
   end
 
   def edit
@@ -28,4 +33,11 @@ class GamesController < ApplicationController
     @game.destroy
     redirect_to root_path, status: :see_other
   end
+
+  private
+
+  def game_params
+    params.require(:game).permit(:name, :description, :type, :level, :player, :age, :price, :photo)
+  end
+
 end
