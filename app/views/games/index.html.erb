@@ -1,0 +1,11 @@
+<div class="container justify-content-center">
+  <h1>Share your favorite Games</h1>
+  <div class="row">
+    <% @games.last(6).each do |game| %>
+    <div class="col-lg-4 col-md-6 mb-3">
+          <h2><%= game.name %></h2>
+          <%= cl_image_tag game.photo.key, height: 200, width: 200, crop: :fill %>
+    </div>
+    <% end %>
+  </div>
+</div>
