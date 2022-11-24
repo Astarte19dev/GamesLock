@@ -29,11 +29,20 @@ puts "games creation"
 games["items"].each do |game|
   game_selection = Game.new(
     name: game["name"],
-    description: game["description"]
+    description: game["description"],
+    game_type: Game::GAME_TYPE.sample,
+    level: Game::LEVEL.sample,
+    player: rand(1..8),
+    age: rand(1..16),
+    price: rand(1..10)
   )
   game_selection.user = [mathieu, georges].sample
   file = URI.open(game["images"]["mediacard"]["src@2x"])
   game_selection.photo.attach(io: file, filename: 'image', content_type: 'image/png')
+  file = URI.open(game["images"]["square100"]["src@2x"])
+  game_selection.thumb.attach(io: file, filename: 'image', content_type: 'image/png')
+  file = URI.open(game["images"]["square100"]["src"])
+  game_selection.mini_thumb.attach(io: file, filename: 'image', content_type: 'image/png')
   game_selection.save!
   # puts "#{game_selection.name} - #{game_selection.description}"
 end
