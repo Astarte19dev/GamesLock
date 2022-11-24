@@ -25,10 +25,12 @@
         </div>
 
       <div class="reservation_form">
-        <%= simple_form_for [@game, @reservation] do |f| %>
-          <%= f.input :date_start, html5: true, label: 'Date du début de la location' %>
-          <%= f.input :date_end, html5: true, label: 'Date de fin'%>
-          <%= f.button :submit, 'Rent 🎲', class: 'btn btn-dark' %>
+        <% if current_user != @game.user && current_user %>
+          <%= simple_form_for [@game, @reservation] do |f| %>
+            <%= f.input :date_start, html5: true, label: 'Date du début de la location' %>
+            <%= f.input :date_end, html5: true, label: 'Date de fin'%>
+            <%= f.button :submit, 'Rent 🎲', class: 'btn btn-dark' %>
+          <% end %>
         <% end %>
       </div>
       </div>
