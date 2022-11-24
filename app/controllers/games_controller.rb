@@ -1,6 +1,11 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.all
+    if params[:query]
+      sql_query = "name ILIKE :query"
+      @games = Game.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @games = Game.all
+    end
   end
 
   def show
@@ -33,14 +38,6 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game.destroy
     redirect_to root_path, status: :see_other
-  end
-
-  def search
-    if params[:query].present?
-      @games = Game.where(name: params[:query])
-    else
-      @games = Game.all
-    end
   end
 
   private
