@@ -37,7 +37,7 @@ class GamesController < ApplicationController
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to profile_path, status: :see_other
   end
 
   private

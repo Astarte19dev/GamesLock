@@ -5,6 +5,5 @@ class DashboardsController < ApplicationController
     @reservations = current_user.reservations
   end
 
-  def show
-  end
+
 end
