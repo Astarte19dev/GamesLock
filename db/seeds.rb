@@ -34,6 +34,10 @@ games["items"].each do |game|
   game_selection.user = [mathieu, georges].sample
   file = URI.open(game["images"]["mediacard"]["src@2x"])
   game_selection.photo.attach(io: file, filename: 'image', content_type: 'image/png')
+  file = URI.open(game["images"]["square100"]["src@2x"])
+  game_selection.thumb.attach(io: file, filename: 'image', content_type: 'image/png')
+  file = URI.open(game["images"]["square100"]["src"])
+  game_selection.mini_thumb.attach(io: file, filename: 'image', content_type: 'image/png')
   game_selection.save!
   # puts "#{game_selection.name} - #{game_selection.description}"
 end
