@@ -8,23 +8,11 @@
       <%= simple_form_for(@game) do |f| %>
         <%= f.input :name %>
         <%= f.input :description %>
-        <%= f.input :game_type,
-                    wrapper_html: {id:"inputGame_Type", class: "form-select" },
-                    collection: ['Agility', 'Aventure', 'Family', 'Humor', 'Reflexion', 'Strategy']
-                    %>
+        <%= f.input :game_type, collection: Game::GAME_TYPE %>
         <%= f.input :price %>
-        <%= f.input :level,
-                    wrapper_html: {id:"inputLevel", class: "form-select" },
-                    collection: ['Very easy', 'Easy', 'Normal', 'Expert']
-                    %>
-            <%= f.input :player,
-                    wrapper_html: {id:"inputType", class: "form-select" },
-                    collection: 1..12
-                    %>
-            <%= f.input :age,
-                    wrapper_html: {id:"inputType", class: "form-select" },
-                    collection: ['Moins de 3 ans', '4 - 6 ans', '7 - 10 ans', '10 - 16 ans', '16+ ans']
-                    %>
+        <%= f.input :level, collection: Game::LEVEL %>
+        <%= f.input :player %>
+        <%= f.input :age %>
 
         <legend><h5>This game is in activ reservation</h5></legend>
 
