@@ -18,8 +18,6 @@ class ReservationsController < ApplicationController
     @reservation.user = current_user
     @reservation.game_id = @game.id
     @reservation.game.price = @game.price
-    # @reservation.date_start = reservation_params.date_start
-    # @reservation.date_end = reservation_params.date_end
     @reservation.total_price = (@reservation.date_end - @reservation.date_start).to_i * @reservation.game.price
     if @reservation.save
       redirect_to profile_path(@game)

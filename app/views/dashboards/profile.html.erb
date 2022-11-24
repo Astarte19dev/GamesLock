@@ -1,13 +1,43 @@
 <div class="container">
   <div class="row text-content-justify">
     <div class="col-12">
-        <br>
+
+      <br>
 
       <h1>Welcome to your profile</h1>
-        <br>
+
+      <br>
+
+      <h2>My games booked</h2>
+        <% @reservations_demand.each do |demand| %>
+          <div class="row justify-content-center">
+            <div class="card-product m-3">
+              <%= cl_image_tag demand.game.photo.key, height: 100, crop: :fill %>
+              <div class="card-product-infos">
+                <h2><%= demand.game.name %><h2>
+                <p><%= demand.date_start %> to <%= demand.date_end %><p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+      <h2>My reservations</h2>
+      <% @my_reservations.each do |reservation| %>
+        <div class="row justify-content-center">
+          <div class="card-product m-3">
+            <%= cl_image_tag reservation.game.photo.key, width: 200, crop: :fill %>
+            <div class="card-product-infos">
+              <h2><%= reservation.game.name %></h2>
+              <p><%= reservation.game.game_type %></p>
+              <p>duration: <%= (reservation.date_end - reservation.date_start).to_i %> days</p>
+              <p><%= reservation.total_price %>€</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
 
       <h2>My games to rent</h2>
-      <% @games.each do |game| %>
+      <% @my_games.each do |game| %>
         <div class="row justify-content-center">
           <div class="card-product m-3">
             <%= cl_image_tag game.photo.key, height: 100, crop: :fill %>
@@ -22,23 +52,8 @@
           </div>
         </div>
       <% end %>
-        <br>
 
-      <h2>My reservations</h2>
-      <% @reservations.each do |reservation| %>
-        <div class="row justify-content-center">
-          <div class="card-product m-3">
-            <%= cl_image_tag reservation.game.photo.key, width: 200, crop: :fill %>
-            <div class="card-product-infos">
-              <h2><%= reservation.game.name %></h2>
-              <p><%= reservation.game.game_type %></p>
-              <p>duration: <%= (reservation.date_end - reservation.date_start).to_i %> days</p>
-              <p><%= reservation.total_price %>€</p>
-            </div>
-          </div>
-        </div>
-      <% end %>
-
+      <br>
 
 
     </div>
