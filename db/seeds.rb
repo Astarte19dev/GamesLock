@@ -29,7 +29,12 @@ puts "games creation"
 games["items"].each do |game|
   game_selection = Game.new(
     name: game["name"],
-    description: game["description"]
+    description: game["description"],
+    game_type: Game::GAME_TYPE.sample,
+    level: Game::LEVEL.sample,
+    player: rand(1..8),
+    age: rand(1..16),
+    price: rand(1..10)
   )
   game_selection.user = [mathieu, georges].sample
   file = URI.open(game["images"]["mediacard"]["src@2x"])
