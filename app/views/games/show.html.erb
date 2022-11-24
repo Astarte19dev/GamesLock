@@ -33,12 +33,12 @@
           <% end %>
         <% end %>
       </div>
-      </div>
+      <div>
         <%# Le bouton DELETE n'apparaît que pour le user qui poste l'annonce %>
         <% if current_user == @game.user %>
           <%= link_to "Delete your add", game_path(@game), class: "btn btn-flat", data: {turbo_method: :delete, turbo_confirm: "Valider la suppression?"} %>
         <% end %>
-      <%= link_to "Return to home", root_path, class: "btn btn-info" %>
+      <%= link_to "Return to home", root_path, class: "btn btn-info mt-2" %>
       </div>
     </div>
   </div>
