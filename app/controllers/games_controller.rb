@@ -1,6 +1,11 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.all
+    if params[:query]
+      sql_query = "name ILIKE :query"
+      @games = Game.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @games = Game.all
+    end
   end
 
   def show
@@ -35,17 +40,9 @@ class GamesController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
-  def search
-    if params[:query].present?
-      @games = Game.where(name: params[:query])
-    else
-      @games = Game.all
-    end
-  end
-
   private
 
   def game_params
-    params.require(:game).permit(:name, :description, :type, :level, :player, :age, :price, :photo)
+    params.require(:game).permit(:name, :description, :game_type, :level, :player, :age, :price, :photo)
   end
 end

@@ -5,7 +5,7 @@
 
       <div class="container">
         <div class="product_description">
-            <%= cl_image_tag @game.photo.key, height: 300, width: 400, crop: :fill %>
+            <%= cl_image_tag @game.photo.key, height: 324, width: 576, crop: :fill %>
           <div class="product_key_element mt-2">
             <strong><h3><%= @game.name %></h3></strong> <p>Location <%= @game.price %> € par jour</p>
           </div>
@@ -25,20 +25,20 @@
         </div>
 
       <div class="reservation_form">
-        <%= simple_form_for [@game, @reservation] do |f| %>
-          <%= f.input :date_start, html5: true, label: 'Date du début de la location' %>
-          <%= f.input :date_end, html5: true, label: 'Date de fin'%>
-          <%= f.button :submit, 'Rent 🎲', class: 'btn btn-dark' %>
+        <% if current_user != @game.user && current_user %>
+          <%= simple_form_for [@game, @reservation] do |f| %>
+            <%= f.input :date_start, html5: true, label: 'Date du début de la location' %>
+            <%= f.input :date_end, html5: true, label: 'Date de fin'%>
+            <%= f.button :submit, 'Rent 🎲', class: 'btn btn-dark' %>
+          <% end %>
         <% end %>
       </div>
-
-
-      </div>
+      <div>
         <%# Le bouton DELETE n'apparaît que pour le user qui poste l'annonce %>
         <% if current_user == @game.user %>
           <%= link_to "Delete your add", game_path(@game), class: "btn btn-flat", data: {turbo_method: :delete, turbo_confirm: "Valider la suppression?"} %>
         <% end %>
-      <%= link_to "Return to home", root_path, class: "btn btn-info" %>
+      <%= link_to "Return to home", root_path, class: "btn btn-info mt-2" %>
       </div>
     </div>
   </div>

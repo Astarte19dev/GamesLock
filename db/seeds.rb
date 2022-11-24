@@ -11,28 +11,35 @@
 require "json"
 require "open-uri"
 
-# puts "cleaning games in db"
+puts "cleaning games in db"
 
-# Game.destroy_all
+User.destroy_all
 
-# puts "db cleaned !"
+mathieu = User.create!(firstname: "Mathieu", lastname: "Dupont", address: "48 rue ducau", city: "Bordeaux", email: "mathieu@mail.fr", password: "azerty")
+georges = User.create!(firstname: "Georges", lastname: "Duncan", address: "348 cours portal", city: "Bordeaux", email: "georges@mail.fr", password: "azerty")
 
-# puts "call API"
-# url = "https://api.geekdo.com/api/hotness"
-# games_serialized = URI.open(url).read
-# games = JSON.parse(games_serialized)
+puts "db cleaned !"
 
-# puts "games creation"
-# games["items"].each do |game|
-#   game_selection = Game.new(
-#     name: game["name"],
-#     description: game["description"]
-#   )
-#   game_selection.user = User.all.sample
-#   file = URI.open(game["images"]["mediacard"]["src@2x"])
-#   game_selection.photo.attach(io: file, filename: 'image', content_type: 'image/png')
-#   game_selection.save!
-#   # puts "#{game_selection.name} - #{game_selection.description}"
-# end
+puts "call API"
+url = "https://api.geekdo.com/api/hotness"
+games_serialized = URI.open(url).read
+games = JSON.parse(games_serialized)
 
-# puts "all is done !"
+puts "games creation"
+games["items"].each do |game|
+  game_selection = Game.new(
+    name: game["name"],
+    description: game["description"]
+  )
+  game_selection.user = [mathieu, georges].sample
+  file = URI.open(game["images"]["mediacard"]["src@2x"])
+  game_selection.photo.attach(io: file, filename: 'image', content_type: 'image/png')
+  file = URI.open(game["images"]["square100"]["src@2x"])
+  game_selection.thumb.attach(io: file, filename: 'image', content_type: 'image/png')
+  file = URI.open(game["images"]["square100"]["src"])
+  game_selection.mini_thumb.attach(io: file, filename: 'image', content_type: 'image/png')
+  game_selection.save!
+  # puts "#{game_selection.name} - #{game_selection.description}"
+end
+
+puts "all is done !"
