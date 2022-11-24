@@ -1,9 +1,12 @@
 <div class="container">
   <div class="row text-content-justify">
     <div class="col-12">
-      <h1>Welcome to your profile</h1>
-      <h2>My games to rent</h2>
+        <br>
 
+      <h1>Welcome to your profile</h1>
+        <br>
+
+      <h2>My games to rent</h2>
       <% @games.each do |game| %>
         <div class="row justify-content-center">
           <div class="card-product m-3">
@@ -15,7 +18,9 @@
           </div>
         </div>
       <% end %>
+        <br>
 
+      <h2>My reservations</h2>
       <% @reservations.each do |reservation| %>
         <div class="row justify-content-center">
           <div class="card-product m-3">
