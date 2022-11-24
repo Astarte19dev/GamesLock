@@ -9,7 +9,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-  <%= link_to 'Create a game',  new_game_path, class:"btn btn-info" %>
+    <% if user_signed_in? %>
+      <%= link_to 'Create a game',  new_game_path, class:"btn btn-info" %>
+    <% else %>
+      <%= link_to "Create a game", new_user_session_path, class: "btn btn-info" %>
+    <% end %>
+
+
 
 <%# <%= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline' } do |f| %>
   <%# <%= f.input :name, input_html: {value: ""} %>
