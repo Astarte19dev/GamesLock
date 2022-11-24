@@ -12,6 +12,5 @@ class Game < ApplicationRecord
   # validates :game_type, presence: true
   validates :level, presence: true
   validates :player, presence: true
-  validates :age, presence: true
-  validates :price, presence: true
+  validates :age, numericality: { greater_than_or_equal_to: 1 }
 end

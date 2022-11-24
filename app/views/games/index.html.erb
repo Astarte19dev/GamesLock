@@ -8,20 +8,22 @@
 <div class="container">
   <div class="row">
     <% @games.each do |game| %>
-    <div class="col-lg-4 col-md-6 mb-5">
-      <div class="games-card">
-        <h2 class="games-title">
-          <%= link_to game.name, game_path(game) %>
-        </h2>
-        <h3>
-          <%= link_to game_path(game) do %>
-        </h3>
-          <div>
-            <%= cl_image_tag game.photo.key, height: 140, crop: :fill %>
+      <% if current_user != game.user %>
+        <div class="col-lg-4 col-md-6 mb-5">
+          <div class="games-card">
+            <h2 class="games-title">
+              <%= link_to game.name, game_path(game) %> - <%= game.price %> €
+            </h2>
+            <h3>
+              <%= link_to game_path(game) do %>
+            </h3>
+              <div>
+                <%= cl_image_tag game.photo.key, height: 140, crop: :fill %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-      </div>
-    </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
