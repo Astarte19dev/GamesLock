@@ -3,6 +3,7 @@
     <div class="col-12">
       <h1>Welcome to your profile</h1>
       <h2>My games to rent</h2>
+
       <% @games.each do |game| %>
         <div class="row justify-content-center">
           <div class="card-product m-3">
@@ -14,6 +15,23 @@
           </div>
         </div>
       <% end %>
+
+      <% @reservations.each do |reservation| %>
+        <div class="row justify-content-center">
+          <div class="card-product m-3">
+            <%= cl_image_tag reservation.game.photo.key, width: 200, crop: :fill %>
+            <div class="card-product-infos">
+              <h2><%= reservation.game.name %></h2>
+              <p><%= reservation.game.game_type %></p>
+              <p>duration: <%= (reservation.date_end - reservation.date_start).to_i %> days</p>
+              <p><%= reservation.total_price %>€</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+
+
     </div>
   </div>
 </div>
