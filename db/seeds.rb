@@ -15,8 +15,8 @@ puts "cleaning games in db"
 
 User.destroy_all
 
-mathieu = User.create!(firstname: "Mathieu", lastname: "Dupont", address: "48 rue ducau", city: "Bordeaux", email: "mathieu@mail.fr", password: "azerty")
-georges = User.create!(firstname: "Georges", lastname: "Duncan", address: "348 cours portal", city: "Bordeaux", email: "georges@mail.fr", password: "azerty")
+mathieu = User.create!(firstname: "Mathieu", lastname: "Dupont", address: "48 rue ducau", city: "Bordeaux", email: "mathieu@mail.com", password: "azerty")
+georges = User.create!(firstname: "Georges", lastname: "Duncan", address: "2 rue Jacques Juillac", city: "Talence", email: "georges@mail.com", password: "azerty")
 
 puts "db cleaned !"
 
