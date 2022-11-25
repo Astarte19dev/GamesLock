@@ -7,4 +7,10 @@ class Game < ApplicationRecord
   has_one_attached :mini_thumb
   belongs_to :user
   has_many :reservations, dependent: :destroy
+  validates :name, presence: true
+  validates :description, presence: true
+  # validates :game_type, presence: true
+  validates :level, presence: true
+  validates :player, presence: true
+  validates :age, numericality: { greater_than_or_equal_to: 1 }
 end
