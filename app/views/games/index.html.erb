@@ -18,7 +18,12 @@
               <%= link_to game_path(game) do %>
             </h3>
               <div>
-                <%= cl_image_tag game.photo.key, height: 140, crop: :fill %>
+                <% if game.photo.attached? %>
+                  <%= cl_image_tag game.photo.key, height: 140, crop: :fill %>
+                <% else %>
+                  <%= image_path("https://unsplash.com/photos/3WceTBlUoMs") %>
+                <% end %>
+                <%# <%= cl_image_tag game.photo.key, height: 140, crop: :fill %> %>
               </div>
             <% end %>
           </div>
