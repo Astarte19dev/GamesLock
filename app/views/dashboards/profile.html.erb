@@ -45,7 +45,7 @@
               <h2><%= link_to game.name, game_path(game) %></h2>
               <p><%= game.description %></p>
               <p>
-                <%= link_to "", profile_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "fa-solid fa-trash" %>
+                <%= link_to "", game_path(game), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "fa-solid fa-trash" %>
                 <%= link_to "", edit_game_path(game), class: "fa-solid fa-pen-to-square" %>
               </p>
             </div>

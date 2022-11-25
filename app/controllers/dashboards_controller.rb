@@ -6,6 +6,5 @@ class DashboardsController < ApplicationController
     @reservations_demand = Reservation.where.not(user: current_user).where(game: current_user.games)
   end
 
-  def show
-  end
+
 end
