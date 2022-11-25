@@ -1,8 +1,12 @@
 class GamesController < ApplicationController
   def index
-    if params[:query]
-      sql_query = "name ILIKE :query"
-      @games = Game.where(sql_query, query: "%#{params[:query]}%")
+    if params[:query].present?
+      sql_query = <<~SQL
+        games.name ILIKE :query
+        OR users.city ILIKE :query
+      SQL
+      @games = Game.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+      # si user.city = params query
     else
       @games = Game.all
     end
