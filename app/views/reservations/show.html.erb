@@ -1,0 +1,35 @@
+div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+
+    <div class=“container”>
+      <h1>Edit your game here</h1>
+      <%= simple_form_for(@game) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :game_type, collection: Game::GAME_TYPE %>
+        <%= f.input :price %>
+        <%= f.input :level, collection: Game::LEVEL %>
+        <%= f.input :player %>
+        <%= f.input :age %>
+
+        <legend><h5>This game is in activ reservation</h5></legend>
+
+        <div>
+          <input type="checkbox" id="yes">
+          <label for="activ">Yes</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="no">
+          <label for="noActiv">No</label>
+        </div>
+
+      </div>
+          <%= f.button :submit, class: 'btn btn-primary' %>
+        <% end %>
+    </div>
+
+    </div>
+  </div>
+</div>
