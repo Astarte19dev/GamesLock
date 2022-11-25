@@ -4,4 +4,5 @@ class Reservation < ApplicationRecord
 
   validates :date_start, presence: true
   validates :date_end, presence: true
+  validates :date_end, comparison: { greater_than: :date_start}
 end

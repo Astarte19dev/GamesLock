@@ -1,36 +1,56 @@
+<div class="container mt-5">
+  <h1 class="form-title d-flex justify-content-center">What games would you like to rent?</h1>
 
-<div class="container py-5">
-  <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3">
-
-    <div class=“container”>
-      <h1>Edit your game here</h1>
-      <%= simple_form_for(@game) do |f| %>
-        <%= f.input :name %>
-        <%= f.input :description %>
-        <%= f.input :game_type, collection: Game::GAME_TYPE %>
-        <%= f.input :price %>
-        <%= f.input :level, collection: Game::LEVEL %>
-        <%= f.input :player %>
-        <%= f.input :age %>
-
-        <legend><h5>This game is in activ reservation</h5></legend>
-
-        <div>
-          <input type="checkbox" id="yes">
-          <label for="activ">Yes</label>
-        </div>
-
-        <div>
-          <input type="checkbox" id="no">
-          <label for="noActiv">No</label>
-        </div>
-
-      </div>
-          <%= f.button :submit, class: 'btn btn-primary' %>
-        <% end %>
-    </div>
-
-    </div>
+  <div class="d-flex justify-content-center">
+    <!-- <%= cl_image_tag("qwohup0oiocwtd1nxaqb.jpg", width: 900, height: 300, crop: :fill) %> -->
   </div>
+
+  <%= simple_form_for(@game) do |f| %>
+    <div class="row justify-content-center">
+      <div class="col-4 col-sm-3 my-3">
+        <%= f.input :name %>
+      </div>
+      <div class="col-4 col-sm-3 my-3">
+        <%= f.input :game_type, collection: Game::GAME_TYPE %>
+      </div>
+    </div>
+
+      <div class="row justify-content-center">
+        <div class="col-8 col-sm-6 my-3">
+        <%= f.input :description %>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-4 col-sm-3 my-3">
+          <%= f.input :player, label:"min Player" %>
+        </div>
+        <div class="col-4 col-sm-3 my-3">
+          <%= f.input :age %>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-4 col-sm-3 my-3">
+          <%= f.input :level, collection: Game::LEVEL %>
+        </div>
+        <div class="col-4 col-sm-3 my-3">
+          <%= f.input :price %>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-8 col-sm-6 my-3">
+          <%= f.input :photo, as: :file %>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-8 col-sm-6 my-3">
+          <%= f.button :submit, class: "btn-info" %>
+        </div>
+      </div>
+
+      <% end %>
+    </div>
 </div>
