@@ -1,35 +1,56 @@
 
 <div class="container py-5">
-  <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3">
-
-      <div class="container">
-        <div class="product_description">
-            <%= cl_image_tag @game.photo.key, height: 324, width: 576, crop: :fill %>
-          <div class="product_key_element mt-2">
-            <strong><h3><%= @game.name %></h3></strong> <p>Location <%= @game.price %> € par jour</p>
-          </div>
-
-          <div class="product_details mb-5">
-            <h5><strong>Game description</strong></h5>
-            <p><%= @game.description %><p>
-            <h5><strong>Type</strong></h5>
-            <p><%= @game.game_type %></p>
-            <h5><strong>Number of players</strong></h5>
-            <p><%= @game.player %></p>
-            <h5><strong>Age</strong></h5>
-            <p><%= @game.age %></p>
-            <h5><strong>Level</strong></h5>
-            <p><%= @game.level%></p>
+  <div class="show-card">
+    <div class="row">
+      <div class="col-12 col-md-6 offset-lg-3">
+        <div class="container">
+          <div class="product_description">
+            <div class="card-games">
+              <div class="product_key_element">
+                <br>
+              <div class="justify-content-center"><%= cl_image_tag @game.photo.key, width: 400, crop: :fill %></div>
+                <br>
+                <h3><strong><%= @game.name %></strong></h3>
+                <div class="product_details">
+                  <div class="mb-30px">
+                    <p><%= @game.description %><p>
+                  </div>
+                  <div>
+                      <p>_______________________________________</p>
+                  </div>
+                  <div class="card-games-details">
+                    <h5><strong>Type</strong></h5>
+                    <p><%= @game.game_type %></p>
+                  </div>
+                  <div class="card-games-details">
+                    <h5><strong>Max Players</strong></h5>
+                    <p><%= @game.player %></p>
+                  </div>
+                  <div class="card-games-details">
+                    <h5><strong>Min Age</strong></h5>
+                    <p><%= @game.age %></p>
+                  </div>
+                  <div class="card-games-details">
+                    <h5><strong>Level</strong></h5>
+                    <p><%= @game.level%></p>
+                  </div>
+                  <div class="card-games-details">
+                    <h5><strong>Price/day</strong></h5>
+                    <p><%= @game.price %>€</p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-
-      <div class="reservation_form">
-        <% if current_user != @game.user && current_user %>
-          <%= simple_form_for [@game, @reservation] do |f| %>
-            <%= f.input :date_start, html5: true, label: 'Date du début de la location' %>
-            <%= f.input :date_end, html5: true, label: 'Date de fin'%>
-            <%= f.button :submit, 'Rent 🎲', class: 'btn btn-dark' %>
+        <br>
+        <div class="reservation_form" data-controller="insert-total-price">
+          <% if current_user != @game.user && current_user %>
+            <%= simple_form_for [@game, @reservation] do |f| %>
+              <%= f.input :date_start, html5: true, label: 'Date du début de la location' %>
+              <%= f.input :date_end, html5: true, label: 'Date de fin'%>
+              <%= f.button :submit, 'Rent 🎲', class: 'btn btn-dark' %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

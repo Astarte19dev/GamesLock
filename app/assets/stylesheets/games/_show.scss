@@ -1,0 +1,20 @@
+.card-games{
+  margin-top: 20px;
+  background-color: #ffffff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+}
+
+.card-games-details{
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.show-card {
+  text-align: center;
+}
